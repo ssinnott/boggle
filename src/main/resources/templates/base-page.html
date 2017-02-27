@@ -13,12 +13,48 @@
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"/>
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
 
+    <style>
+        .selected{
+            background-color: #afd9ee;
+        }
+    </style>
 </head>
 <body>
-    <div>
-        <b>Hello!</b>
+    <div style="text-align: center">
+        <b>Boggle Board</b>
+        <table class="table">
+            <tbody data-bind="foreach: rows">
+                <tr data-bind="foreach: cols">
+                    <td>
+                        <input maxlength="1" pattern="[a-z]" style="text-align: center" data-bind="value: value, css: {selected: selected}"/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-default" data-bind="click: solve">Solve me!</button>
     </div>
 
+    <div style="text-align: center">
+        <h3>Answers!</h3>
+        <table class="table">
+            <thead>
+                <th>Word</th>
+                <th>View</th>
+            </thead>
+            <tbody data-bind="foreach: results">
+                <tr>
+                    <td>
+                        <b data-bind="text: word"></b>
+                    </td>
+                    <td>
+                        <button type="button" data-bind="click: selectMe" class="btn btn-default" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <script>
 
         var app = null;
